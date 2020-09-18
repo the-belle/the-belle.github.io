@@ -1,0 +1,30 @@
+---
+layout: default
+title: Blog
+---
+<div id="blog-list-wrapper">
+  <ul id="blog-list">
+    {% for post in site.posts %}
+      <li>
+        <a href="{{ post.url }}">
+          <img src="/assets/img/post/{{ post.image }}" />
+          <h2>
+            {{ post.title }}
+          </h2>
+          <time datetime="{{post.date}}">{{ post.date | date: "%Y-%m-%d" }}</time>
+          <p>{{ post.excerpt }}</p>
+        </a>
+        <div class="divider"></div>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <aside>
+    <h2>Categories</h2>
+    <ul>
+      {% for category in site.categories %}
+        <li>{{ category[0] }}</li>
+      {% endfor %}
+    </ul>
+  </aside>
+</div>

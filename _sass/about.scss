@@ -1,0 +1,32 @@
+@import "constant";
+
+#about {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em 2em;
+  align-items: center;
+
+  @media(min-width: $break-point) {
+    grid-template-columns: 45% auto;
+    margin-top: 10vh;
+  }
+
+  img {
+    margin: auto;
+    max-width: 100%;
+  }
+
+  dt {
+    font-size: 1.2em;
+    line-height: 2;
+    margin-top: 10px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  dd {
+    margin: 0;
+  }
+}

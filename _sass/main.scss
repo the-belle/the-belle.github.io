@@ -1,0 +1,272 @@
+@import "constant";
+
+$nav-width-desktop: 40em;
+$nav-width-mobile: 20em;
+$nav-item-nb: 6;
+$header-height: 60px;
+$main-padding-desktop: 4em;
+$main-padding-mobile: 1em;
+
+.full-height {
+	height: 100%;
+	overflow: auto;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60px;
+	z-index: 1;
+	background-color: #fff;
+
+	.site-icon {
+		text-decoration: none;
+		display: flex;
+		align-items: center;
+
+		span {
+			font-size: 1.2em;
+			font-style: oblique;
+			margin: 12px;
+		}
+	}
+}
+
+#desktop-nav {
+	header {
+		justify-content: space-between;
+		padding: 0 $main-padding-desktop;
+	}
+
+	.desktop-nav-links {
+		a {
+			font-size: 1em;
+			text-decoration: none;
+			margin-left: 1em;
+			transition: opacity .5s $timing-function;
+
+			&.current {
+				border-bottom: 2px solid #444;
+			}
+
+			&:hover, &:focus {
+				opacity: $opacity;
+			}
+		}
+	}
+}
+
+#desktop-nav {
+	display: none;
+}
+
+@media(min-width: $break-point) {
+	#mobile-nav {
+		display: none;
+	}
+
+	#desktop-nav {
+		display: block;
+	}
+}
+
+#navcheck {
+	position: fixed;
+	opacity: 0;
+}
+
+#navcheck-label {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	background: none;
+  cursor: pointer;
+
+	&::before {
+		position: fixed;
+		z-index: 2;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(darken(#444,30%),.6);
+		content: '';
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity .5s $timing-function;
+  }
+
+	.burger {
+		position: fixed;
+		top: 1em;
+		left: $main-padding-mobile;
+		z-index: 4;
+		width: 1.5em;
+		height: 1.5em;
+		margin: 0;
+		padding: 0;
+    transition: opacity .5s $timing-function;
+
+		&::before,
+		.bar,
+		&::after {
+			position: absolute;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 12%;
+			background: #222;
+			content: '';
+			transition: all .5s $timing-function;
+    }
+
+		.bar {
+			top: 44%;
+    }
+
+		&::before {
+			top: 0;
+			transform-origin: top left;
+    }
+
+		&::after {
+			bottom: 0;
+			transform-origin: bottom left;
+		}
+	}
+}
+
+#navcheck:focus + #navcheck-label,
+#navcheck-label:hover {
+	.burger {
+		opacity: .75;
+	}
+}
+
+#nav-menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 3;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: flex-start;
+	transform: translate3d(0,0,0); /* material acceleration */
+	transform: translateX(-100%);
+	will-change: transform;
+  transition: transform .5s $timing-function;
+
+	&::before {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		width: $nav-width-mobile;
+		background: #999;
+		content: '';
+		transform: skewX(15deg) translateX(-100%);
+		transform-origin: bottom left;
+		will-change: transform;
+		transition: transform .5s $timing-function;
+
+		@media(min-width: $break-point) {
+			width: $nav-width-desktop;
+		}
+  }
+
+	a {
+		margin: .5em 0;
+		padding: .2em 2em;
+		font-size: 1.2em;
+		color: white;
+		text-decoration: none;
+		font-weight: 500;
+		transform: translateX(-100%);
+		transition: color .15s, transform .5s;
+    transition-timing-function: $timing-function;
+
+		@for $i from 1 through $nav-item-nb {
+			&:nth-child(#{$i}) { transition-delay: 0s, #{50 + (50 * $i)}ms; }	
+    }
+
+		&:hover, &:focus, &.current {
+			color:#444;
+		}
+	}
+}
+
+main {
+	overflow: hidden;
+
+	&.extra-padding {
+		padding-top: $header-height;
+		padding-left: $main-padding-mobile;
+		padding-right: $main-padding-mobile;
+
+		@media(min-width: $break-point) {
+			padding-left: $main-padding-desktop;
+			padding-right: $main-padding-desktop;
+		}
+	}
+}
+
+#navcheck:checked {
+	& + label {
+		&::before {
+			opacity: 1;
+			pointer-events: auto;
+    }
+
+		.burger {
+			&::before,
+			&::after {
+				width: 141.42%; // Pythagore!
+			}
+			&::before {
+				transform: rotate(45deg) translateY(-50%);
+			}
+			&::after {
+				transform: rotate(-45deg) translateY(50%);
+			}
+			.bar {
+				transform: scale(0.1);
+			}
+		}
+  }
+
+	& ~ #nav-menu {
+		transform: translateX(0);
+		&::before {
+			transform: skewX(15deg) translateX(0);
+		}
+		a {
+			transform: translateX(0);
+		}
+  }
+
+	& ~ main {
+		-webkit-filter: blur(2px);
+		        filter: blur(2px); /* quite laggy :S */
+	}
+}
+
+/* helper */
+.visuallyhidden {
+  border:0;
+  clip:rect(0 0 0 0);
+  height:1px;
+  margin:-1px;
+  overflow:hidden;
+  padding:0;
+  position:absolute; width:1px;
+}

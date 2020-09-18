@@ -1,0 +1,25 @@
+---
+layout: default
+title: Home
+---
+<div class="slide">
+  <img class="slide-image active" src="/assets/img/slide/slide-1.jpg" />
+  <img class="slide-image" src="/assets/img/slide/slide-2.jpg" />
+  <img class="slide-image" src="/assets/img/slide/slide-3.jpg" />
+  <img class="slide-image" src="/assets/img/slide/slide-4.jpg" />
+</div>
+
+<script>
+  var slideImages = document.getElementsByClassName('slide-image');
+  var currentImageIndex = 0;
+
+  setInterval(function () {
+    slideImages[currentImageIndex].classList.remove('active');
+    if (currentImageIndex === slideImages.length - 1) {
+      currentImageIndex = 0;
+    } else {
+      currentImageIndex  = currentImageIndex + 1;
+    }
+    slideImages[currentImageIndex].classList.add('active');
+  }, 5000);
+</script>

@@ -1,0 +1,50 @@
+@import "constant";
+
+#contact-form {
+  @media(min-width: $break-point) {
+    width: $desktop-content-width;
+  }
+
+  label {
+    display: block;
+  }
+
+  input[type=email], textarea {
+    display: block;
+    width: 100%;
+    margin: 0.5em 0 2em;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    background: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  textarea {
+    height: 10em;
+  }
+
+  button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border: 1px solid #ccc;
+    background: transparent;
+    transition: opacity .5s $timing-function;
+    margin-bottom: 2em;
+    text-align: center;
+    width: 100%;
+
+    @media(min-width: $break-point) {
+      width: auto;
+    }
+
+    &:hover {
+      opacity: $opacity;
+    }
+  }
+}
