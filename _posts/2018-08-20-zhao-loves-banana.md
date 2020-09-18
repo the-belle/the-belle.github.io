@@ -4,9 +4,9 @@ image: banana.jpg
 imageAlt: Banana
 category: Food
 ---
-じゃおがバナナ大好きですw
+Zhao loves banana very much!
 
-みなさんもバナナ好きでしょうか？w
+Do you guys love banana?
 
 <!--more-->
 

@@ -4,15 +4,15 @@ title: Contact
 ---
 <h2>Contact</h2>
 <form id="contact-form"
-  action="https://formspree.io/mdqvjybx"
+  action="https://formspree.io/xoqpazno"
   method="POST"
 >
-  <label for="email-field">メールアドレス *</label>
+  <label for="email-field">E-mail Address *</label>
   <input id="email-field" type="email" name="email" />
-  <label for="message-field">メッセージ *</label>
+  <label for="message-field">Message *</label>
   <textarea id="message-field" type="text" name="message"></textarea>
   <p id="status"></p>
-  <button type="submit" id="submit-button">送信</button>
+  <button type="submit" id="submit-button">Submit</button>
 </form>
 
 <!-- Place this script at the end of the body tag -->
@@ -29,11 +29,11 @@ title: Contact
     function success() {
       form.reset();
       submitButton.style = "display: none ";
-      status.innerHTML = "送信しました！ありがとうございます！";
+      status.innerHTML = "Your message has been submitted! Thank you!";
     }
 
     function error() {
-      status.innerHTML = "送信失敗しました";
+      status.innerHTML = "Failed to send your message. Please try again.";
     }
 
     // handle the form submission event
@@ -44,12 +44,12 @@ title: Contact
       var message = data.get('message');
 
       if (!/^\S+@\S+$/.test(email)) {
-        status.innerHTML = "正確なメールアドレスを入力してください";
+        status.innerHTML = "Please enter correct e-mail address.";
         return;
       }
 
       if (message.length === 0) {
-        status.innerHTML = "メッセージを入力してください";
+        status.innerHTML = "Please enter your message.";
         return;
       }
       ajax(form.method, form.action, data, success, error);

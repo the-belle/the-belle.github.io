@@ -3,7 +3,7 @@
 #blog-list-wrapper {
   aside {
     display: none;
-    width: 20em;
+    min-width: 15em;
     border: 1px solid #000;
     font-style: oblique;
     padding: 1em;
@@ -41,6 +41,8 @@
   img {
     display: block;
     width: 100%;
+    max-width: 500px;
+    margin: auto;
   }
 
   .divider {

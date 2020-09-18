@@ -4,9 +4,9 @@ image: apple.jpg
 imageAlt: Apple
 category: People
 ---
-前川さんがりんご大好きです！
+Someone loves apple!
 
-りんごについて紹介します！
+Let me introduce apple to you!
 
 <!--more-->
 

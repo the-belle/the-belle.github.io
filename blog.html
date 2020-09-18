@@ -7,7 +7,7 @@ title: Blog
     {% for post in site.posts %}
       <li>
         <a href="{{ post.url }}">
-          <img src="/assets/img/post/{{ post.image }}" />
+          <img src="/assets/img/post/{{ post.image }}" alt="{{ post.imageAlt }}" />
           <h2>
             {{ post.title }}
           </h2>
